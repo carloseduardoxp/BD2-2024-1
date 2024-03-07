@@ -3,6 +3,7 @@ package br.edu.iftm.lco.ecommerce.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -25,4 +26,13 @@ public class CategoriaDao {
 
     }
 
+    public List<Categoria> getCategorias(String nome) {
+        String sql = "select categoriaID, categoria, descricao from categorias where lower(categoria) like ?";
+        return db.query(sql, (res, rowNum) -> {
+            return new Categoria(
+                    res.getInt("categoriaID"),
+                    res.getString("categoria"),
+                    res.getString("descricao"));
+        },new Object[] { "%" + nome + "%" });
+    }
 }
