@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.iftm.lco.ecommerce.dao.CategoriaDao;
-import br.edu.iftm.lco.ecommerce.domain.Categoria;
+import br.edu.iftm.lco.ecommerce.dao.domain.Categoria;
 
 @RestController
 public class CategoriaController {

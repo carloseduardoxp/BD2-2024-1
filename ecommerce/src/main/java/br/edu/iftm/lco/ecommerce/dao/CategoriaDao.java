@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import br.edu.iftm.lco.ecommerce.domain.Categoria;
+import br.edu.iftm.lco.ecommerce.dao.domain.Categoria;
 
 @Component
 public class CategoriaDao {

@@ -1,4 +1,4 @@
-package br.edu.iftm.lco.ecommerce.domain;
+package br.edu.iftm.lco.ecommerce.dao.domain;
 
 import lombok.Data;
 
