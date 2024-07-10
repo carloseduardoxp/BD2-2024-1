@@ -17,10 +17,15 @@ import br.edu.iftm.lco.ecommerce.dao.domain.Categoria;
 public class CategoriaController {
     @Autowired
     private CategoriaDao dao;
-
-    @RequestMapping(value = "/categoria", method = RequestMethod.GET)
-    public List<Categoria> getCategorias() {
-        return dao.getCategorias();
+    
+    @RequestMapping(value = "/categoria/id/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<Categoria>> 
+                                GetById(@PathVariable(value = "id") Integer id) {
+        List<Categoria> categorias = dao.getCategorias(id);
+        if (categorias.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(categorias);
     }
 
     @RequestMapping(value = "/categoria/{nome}", method = RequestMethod.GET)
