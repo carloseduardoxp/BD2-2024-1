@@ -28,6 +28,16 @@ public class CategoriaController {
         return ResponseEntity.ok(categorias);
     }
 
+    @RequestMapping(value = "/categoria/id/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<Categoria>> 
+                      GetById(@PathVariable(value = "id") Integer id) {
+        List<Categoria> categorias = dao.getCategoriasId(id);
+        if (categorias.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(categorias);
+    }
+
     @RequestMapping(value = "/categoria/{nome}", method = RequestMethod.GET)
     public ResponseEntity<List<Categoria>> GetByNome(@PathVariable(value = "nome") String nome) {
         List<Categoria> categorias = dao.getCategorias(nome);

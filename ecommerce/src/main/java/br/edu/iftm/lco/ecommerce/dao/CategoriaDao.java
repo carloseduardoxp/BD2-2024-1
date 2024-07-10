@@ -27,6 +27,17 @@ public class CategoriaDao {
 
     }
 
+    public List<Categoria> getCategoriasId(Integer id) {
+        String sql = "call sp_listar_categorias(?);";
+        return db.query(sql, (res, rowNum) -> {
+            return new Categoria(
+                    res.getInt("categoriaID"),
+                    res.getString("categoria"),
+                    res.getString("descricao"));
+        },new Object[] { id });
+    }
+
+
     public List<Categoria> getCategorias(String nome) {
         String sql = "select categoriaID, categoria, descricao from categorias where lower(categoria) like ?";
         return db.query(sql, (res, rowNum) -> {
