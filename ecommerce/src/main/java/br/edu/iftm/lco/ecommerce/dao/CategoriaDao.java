@@ -9,20 +9,21 @@ import org.springframework.stereotype.Component;
 
 import br.edu.iftm.lco.ecommerce.dao.domain.Categoria;
 
+@SuppressWarnings("unused")
 @Component
 public class CategoriaDao {
 
     @Autowired
     private JdbcTemplate db;
 
-    public List<Categoria> getCategorias() {
-        String sql = "select categoriaID, categoria, descricao from categorias";
+    public List<Categoria> getCategorias(Integer id) {
+        String sql = "call sp_listar_categorias(?);";
         return db.query(sql, (res, rowNum) -> {
             return new Categoria(
                     res.getInt("categoriaID"),
                     res.getString("categoria"),
                     res.getString("descricao"));
-        });
+        },new Object[]{id});
 
     }
 
